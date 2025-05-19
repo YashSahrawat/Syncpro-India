@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans:400,500,700|Google+Sans:Text:400,500,700&lang=en">
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:Text:400&text=%E2%86%90%E2%86%92%E2%86%91%E2%86%93&lang=en">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syncpro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      padding: 15px;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+    .whatsapp-btn img {
+      width: 30px;
+      height: 30px;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    body {
+      background-color: rgb(3 7 18);
+      color: #ADD8E6;
+      font-family: 'Source Sans Pro', arial, sans-serif;
+    }
+    .hero-bg {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url("image.png");
+      background-size:cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+   /* .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: rgb(3 7 18);
+      border-color: #ADD8E6;
+      border-width: .3px;
+      border-radius: 1rem;
+      overflow: hidden;
+      width: 100%;
+      max-width: 20rem; /* Limit card width to prevent stretching 
+      margin-bottom: 1.5rem; /* Add spacing between cards 
+    }*/
+    .service-card h3 {
+      text-align: center;
+    }
+    .service-card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      max-height: 200px;
+    }
+    /*.service-card:hover {
+      transform: translateY(-0.625rem) scale(1.05);
+      box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.5);
+      
+    }*/
+    .cta-button {
+      background-color: #f59e0b;
+      color: #1a1a1a;
+      transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #d97706;
+    }
+    .nav-bar {
+      background-color: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(3px);
+    }
+    .nav-link {
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+    }
+    .nav-link:hover {
+      color:#6b6bfb
+    }
+    .nav-logo {
+      max-height: 1.875rem;
+      width: 9.00rem;
+      padding-top: 0.3125rem;
+      padding-bottom: 0.625rem;
+    }
+    .story {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 90%;
+      font-family: 'Source Sans Pro', arial, sans-serif;
+      font-weight: 400;
+      line-height: 1.75;
+      letter-spacing: normal;
+      color:#635f5f; /* Improved readability */
+    }
+    #address {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 90%;
+      font-family: 'Source Sans Pro', arial, sans-serif;
+      font-weight: 400;
+      line-height: 1.75;
+      letter-spacing: normal;
+      color: #ADD8E6;
+    }
+    
+    footer {
+      background-color: rgba(26, 26, 26, 0.95);
+      padding: 2rem 1rem;
+    }
+    .Social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .Social a {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    /* Responsive Navigation */
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .hamburger span {
+      width: 1.5rem;
+      height: 0.1875rem;
+      background-color: #ADD8E6;
+      margin: 0.25rem 0;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+    }
+    .services-grid {
+      justify-items: center; /* Center grid items horizontally */
+    }
+    /* Position Distribution Box and Sensors */
+    .service-card.distribution-box {
+      grid-column: 1/3; /* Place in first column */
+      grid-row: 2;
+    }
+    .service-card.sensors {
+      grid-column: 2/4; /* Place in second column */
+      grid-row: 2;
+    }
+    @media (max-width: 1024px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba(26, 26, 26, 0.95);
+        width: 70%;
+        max-width: 300px;
+        padding: 4rem 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+      }
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+      }
+      .nav-link {
+        font-size: 1.25rem;
+        padding: 1rem;
+      }
+      .hamburger {
+        display: flex;
+      }
+      
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba(26, 26, 26, 0.95);
+        width: 70%;
+        max-width: 300px;
+        padding: 4rem 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+      }
+      .nav-link {
+        font-size: 1.25rem;
+        padding: 1rem;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero-bg h1 {
+        font-size: 2.5rem;
+      }
+      .hero-bg p {
+        font-size: 1.25rem;
+      }
+      .services-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        justify-items: center; /* Center cards horizontally */
+      }
+     
+      .service-card.distribution-box,
+      .service-card.sensors {
+        grid-column: auto; /* Reset grid-column */
+        grid-row: auto; /* Reset grid-row */
+      }
+      .story, #address {
+        max-width: 95%;
+        font-size: 1rem;
+      }
+      .whatsapp-button a {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+      }
+      .whatsapp-icon {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-bg h1 {
+        font-size: 1.875rem;
+      }
+      .hero-bg p {
+        font-size: 1rem;
+      }
+      .service-card h3 {
+        font-size: 1.25rem;
+      }
+      .service-card img {
+        max-height: 150px;
+      }
+      .story, #address {
+        font-size: 0.875rem;
+      }
+      .Social a {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+    @media (min-width: 1440px) {
+      .max-w-7xl {
+        max-width: 80rem;
+      }
+      .hero-bg h1 {
+        font-size: 4.5rem;
+      }
+      .hero-bg p {
+        font-size: 1.75rem;
+      }
+      .service-card h3 {
+        font-size: 1.75rem;
+      }
+      .service-card img {
+        max-height: 250px;
+      }
+    }
+    /* Custom Animation Keyframes */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-0.5rem); }
+      60% { transform: translateY(-0.25rem); }
+    }
+    /* Address Logo Centering */
+    .address-logo {
+      display: block;
+      margin: 0 auto;
+      max-width: 150px;
+      height: auto;
+    }
+    .services {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            justify-items: center;
+            align-items: stretch;
+        }
+
+        .service-card {
+            background-color: rgb(3 7 18);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            color:#ADD8E6;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(173,216,230, 0.3);
+             color:#ADD8E6;
+        }
+
+        .service-card::before {
+            content:'';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(173,216,230, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+             color:#ADD8E6;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card img {
+           height: min-content;
+           width: min-content;
+           align-items: center;
+           justify-content: center;
+          display: flex;
+          margin: auto;
+          }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+             color:#ADD8E6;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            font-weight: 300;
+             color:#ADD8E6;
+        }
+
+  </style>
+</head>
+<body>
+  <nav class="nav-bar fixed top-0 left-0 w-full z-50 py-4 px-4 sm:px-6" data-aos="fade-down">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="nav-logo"><img src="qt=q_95.png" alt="Syncpro Logo" loading="lazy"></div>
+      <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation" role="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links">
+        <a href="Homepg.html" class="nav-link text-base sm:text-lg">Home</a>
+        <a href="interface.html" class="nav-link text-base sm:text-lg">Interfaces</a>
+        <a href="Power.html" class="nav-link text-base sm:text-lg">Power</a>
+        <a href="Water-Automation.html" class="nav-link text-base sm:text-lg">Water Automation</a>
+        <a href="Distribution-Box.html" class="nav-link text-base sm:text-lg">Distribution Box</a>
+        <a href="Sensors.html" class="nav-link text-base sm:text-lg">Sensors</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      const hamburger = document.querySelector('.hamburger');
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    }
+  </script>
+
+  <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-16 sm:pt-20">
+    <div class="text-center px-4 sm:px-6">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4" data-aos="zoom-in" data-aos-duration="1000">Touchless Control, Limitless Possibilities:</h1>
+      <p class="text-lg sm:text-xl md:text-2xl mb-8" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="1000">Wave Your Way to Comfort!</p>
+    </div>
+  </section>
+
+  <section id="services" class="py-16 sm:py-20 bg-gray-950 px-4 sm:px-6" style="font-family: 'Source Sans Pro', arial, sans-serif;">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12" data-aos="fade-up" data-aos-duration="800">Our Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 services-grid">
+      <a href="interface.html" class="service-card p-6 block">
+    <h3 class="text-xl sm:text-2xl mb-4">Interface</h3>
+    <img src="rs=w_1300,h_800.webp" alt="Interface" loading="lazy">
+</a>
+
+
+        
+        <a href="Power.html" class="service-card p-6" >
+          
+          <h3 class="text-xl sm:text-2xl mb-4">Power</h3>
+          <img src="pwr.png" alt="Power" loading="lazy" height="100%" width="100%"  >
+          </a>
+      
+        
+           <a href="Water-Automation.html" class="service-card p-6" >
+          <h3 class="text-xl sm:text-2xl mb-4">Water Automation</h3>
+          <img src="Waterauto1.png" alt="Water Automation" loading="lazy">
+           </a>
+                 
+           <a href="Distribution-Box.html" class="service-card distribution-box p-6" >
+          <h3 class="text-xl sm:text-2xl mb-4">Distribution Box</h3>
+          <img src="db5.png" alt="Distribution Box" loading="lazy">
+           </a>
+
+          <a href="Sensors.html" class="service-card sensors p-6" >
+          <h3 class="text-xl sm:text-2xl mb-4">Sensors</h3>
+          <img src="snsr.png" alt="Sensors" loading="lazy">
+           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-16 sm:py-20 px-4 sm:px-6 bg-gray-950" data-aos="fade-up" data-aos-duration="800">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Our Story</h2>
+    <div class="story">
+      <p data-aos="fade-up" data-aos-delay="100">Welcome to SyncPro, your ultimate partner in home automation, lighting, and power stabilization solutions. Born from the expertise of home automation integrators, SyncPro was founded to revolutionize the industry by providing comprehensive solutions that eliminate the challenges faced by integrators dealing with traditional box movers.</p>
+      <br>
+      <p data-aos="fade-up" data-aos-delay="200">At SyncPro, we go beyond just home automation equipment. We offer a complete range of products, including lighting solutions and power stabilizers, designed to seamlessly integrate into any home automation project. Our innovative approach combines advanced technology with intuitive design to empower integrators to create tailored solutions that exceed their clients' expectations.</p>
+      <br>
+      <p data-aos="fade-up" data-aos-delay="300">What sets SyncPro apart is our unwavering commitment to providing exceptional technical support and guidance. We understand the complexities of home automation projects and the importance of having reliable tools and resources at your fingertips. That's why we offer extensive training, detailed documentation, and personalized assistance to ensure your success every step of the way.</p>
+      <br>
+      <p data-aos="fade-up" data-aos-delay="400">Whether you're designing a lighting system, integrating power stabilizers, or implementing cutting-edge home automation equipment, SyncPro is here to support you. Together, let's redefine the possibilities of home automation and deliver unparalleled experiences to your clients.</p>
+    </div>
+  </section>
+  <a href="https://wa.me/918128998880" class="whatsapp-btn" data-aos="fade-up">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" loading="lazy">
+  </a>
+
+
+  <section id="address" class="py-16 sm:py-20 px-4 sm:px-6 bg-gray-950" data-aos="fade-up" data-aos-duration="800">
+    <img src="qt=q_95.png" alt="Syncpro Logo" class="address-logo" loading="lazy">
+    <button data-aos="fade-up" data-aos-delay="60" style="text-align: center;  padding: 10px; border-radius: 10px;animation: pulse 2s infinite;"><a href="https://maps.app.goo.gl/tyTvLhoiJ2m88cXA6" style="color: #ADD8E6;"><img src="icon.png" style="width: 40px;max-height: 44px;"></a></button><br>
+    <p><a href="https://maps.app.goo.gl/tyTvLhoiJ2m88cXA6">LOCATE US</a></p>
+    <p class="mt-4">DTI Automation Pvt. Ltd., Home Theater, Control4 Home Automation, Jetalpur Road, above Indusind Bank, opp. Swagat Restaurant, Vishwas Colony, Vadiwadi, Vadodara, Gujarat, India</p>
+    
+  </section>
+
+  <footer class="py-6 text-center bg-gray">
+    <p style="margin:0px" data-aos="fade-up">Copyright ©️ 2025 SYNCPRO - All Rights Reserved.</p>
+    <div class="Social">
+      <a rel="noopener" role="link" aria-haspopup="true" data-ux="Link" target="_blank" data-aid="FOOTER_FACEBOOK_LINK" aria-label="Facebook Social Link" href="https://www.facebook.com/dtiautomation" data-typography="LinkAlpha" class="x-el x-el-a c1-1t c1-1u c1-1v c1-1w c1-1e c1-1x c1-1y c1-cd c1-b c1-7u c1-c c1-26 c1-ce c1-cf c1-d c1-e c1-f c1-g" data-aos="fade-up" data-aos-delay="100">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial" class="x-el x-el-svg c1-1 c1-2 c1-bd c1-1j c1-2h c1-3b c1-3c c1-3d c1-3e c1-b c1-c c1-d c1-e c1-f c1-g">
+          <path fill-rule="evenodd" d="M22 12.061C22 6.505 17.523 2 12 2S2 6.505 2 12.061c0 5.022 3.657 9.184 8.438 9.939v-7.03h-2.54v-2.91h2.54V9.845c0-2.522 1.492-3.915 3.777-3.915 1.094 0 2.238.197 2.238.197v2.476h-1.26c-1.243 0-1.63.775-1.63 1.57v1.888h2.773l-.443 2.908h-2.33V22c4.78-.755 8.437-4.917 8.437-9.939z"></path>
+        </svg>
+      </a>
+      <a rel="noopener" role="link" aria-haspopup="true" data-ux="Link" target="_blank" data-aid="FOOTER_INSTAGRAM_LINK" aria-label="Instagram Social Link" href="https://www.instagram.com/dti.automation/" data-typography="LinkAlpha" class="x-el x-el-a c1-1t c1-1u c1-1v c1-1w c1-1e c1-1x c1-1y c1-cd c1-b c1-7u c1-c c1-26 c1-ce c1-cf c1-d c1-e c1-f c1-g" data-aos="fade-up" data-aos-delay="200">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial" class="x-el x-el-svg c1-1 c1-2 c1-bd c1-1j c1-2h c1-3b c1-3c c1-3d c1-3e c1-b c1-c c1-d c1-e c1-f c1-g">
+          <path d="M16.604 8.516c.13.35.198.719.203 1.091.033.622.033.811.033 2.386 0 1.574-.004 1.763-.033 2.385a3.273 3.273 0 0 1-.203 1.091 1.956 1.956 0 0 1-1.12 1.12c-.35.13-.719.198-1.091.204-.622.032-.811.032-2.386.032-1.574 0-1.763-.003-2.385-.032a3.273 3.273 0 0 1-1.091-.204 1.956 1.956 0 0 1-1.12-1.12 3.273 3.273 0 0 1-.204-1.09c-.032-.623-.032-.812-.032-2.386 0-1.575.003-1.764.032-2.386.006-.372.074-.741.204-1.09a1.956 1.956 0 0 1 1.12-1.12c.35-.13.718-.199 1.09-.204.623-.033.812-.033 2.386-.033 1.575 0 1.764.004 2.386.033.372.005.741.074 1.09.203.515.2.922.606 1.12 1.12zM12 15.033a3.033 3.033 0 1 0 0-6.066 3.033 3.033 0 0 0 0 6.066zm3.153-5.477a.71.71 0 1 0 0-1.418.71.71 0 0 0 0 1.418zM12 13.967a1.967 1.967 0 1 1 0-3.934 1.967 1.967 0 0 1 0 3.934zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10A10 10 0 0 0 12 2zm5.87 12.433c-.01.49-.102.974-.274 1.432a3.018 3.018 0 0 1-1.727 1.728 4.335 4.335 0 0 1-1.433.272c-.629.03-.829.037-2.432.037-1.604 0-1.819 0-2.433-.037a4.335 4.335 0 0 1-1.433-.272 3.018 3.018 0 0 1-1.727-1.728 4.335 4.335 0 0 1-.273-1.432c-.029-.63-.036-.83-.036-2.433 0-1.604 0-1.818.036-2.433.01-.49.102-.974.273-1.432a3.018 3.018 0 0 1 1.727-1.728 4.335 4.335 0 0 1 1.433-.272c.629-.03.829-.037 2.433-.037 1.603 0 1.818 0 2.432.037.49.009.974.101 1.433.272.794.307 1.42.934 1.727 1.728.172.458.264.943.273 1.432.03.63.036.83.036 2.433 0 1.604-.007 1.804-.036 2.433z"></path>
+        </svg>
+      </a>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 600,
+      easing: 'ease-out',
+      once: true,
+       // Disable animations on mobile for performance
+    });
+  </script>
+</body>
+</html>
