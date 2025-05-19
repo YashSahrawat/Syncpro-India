@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans:400,500,700|Google+Sans:Text:400,500,700&lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:Text:400&text=%E2%86%90%E2%86%92%E2%86%91%E2%86%93&lang=en">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Water-Automation | Syncpro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: rgb(3, 7, 18);
+      color: #ADD8E6;
+      font-family: 'Source Sans Pro', arial, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar */
+    .nav-bar {
+      
+      background-color: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(3px);
+      padding: 1rem 1.5rem;
+    }
+    .nav-link {
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+    .nav-link:hover {
+      color: #ffffff;
+    }
+    .nav-logo {
+      max-height: 1.875rem;
+      width: clamp(7rem, 20vw, 9rem);
+      padding: 0.3125rem 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .hamburger span {
+      width: 1.5rem;
+      height: 0.1875rem;
+      background-color: #ADD8E6;
+      margin: 0.25rem 0;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+    }
+
+    /* Hero Section */
+   
+     .hero-bg {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url("wa2.png");
+      background-size:cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      
+    }
+    .hero-bg h1 {
+      text-align: right;
+      justify-content: right;
+      align-items: right;
+      justify-items: right;
+      font-size: clamp(2rem, 8vw, 4.5rem);
+    }
+    .hero-bg p {
+      font-size: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    /* Service Descriptions */
+    .services {
+      align-self: center;
+      justify-self: center;
+      max-width: 90%;
+      margin: auto 10rem 10rem;
+      padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+    
+    .cards-layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .image-display {
+      min-width: 768px;
+      min-height: 550px;
+      flex: 1 1 45%;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(173,216,230,0.1);
+    }
+    .image-display img{
+    width: 10%;
+    vertical-align: middle;
+    display: inline-block;
+    }
+    
+    .cards-column {
+      grid-area: 1 / 2 / 2 / 2;
+    grid-row-start: 1;
+    grid-column-start: 2;
+    grid-row-end: 2;
+    grid-column-end: 2;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    flex-flow: column;
+    display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-end;
+    }
+    .service-card {
+      
+      width: 350px;
+      max-width: 100%;
+      
+      border-radius: 12px;
+      background: rgb(3,7,18);
+      box-shadow: 0 2px 10px rgba(173,216,230,0.08);
+      border: 1px solid rgba(173,216,230,0.2);
+      cursor: pointer;
+      transition: box-shadow 0.3s, transform 0.3s;
+      text-align: left;
+      margin-right: 0;
+      margin-left: auto;
+      display: flex;
+    }
+    .service-card:hover, .service-card.active {
+      transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(173,216,230, 0.3);
+             color:#ADD8E6;
+    }
+    .service-card .card-content {
+      width: 100%;
+      padding: 12px 28px 12px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      
+    }
+    .service-card h3, .service-card p, .service-card i {
+      text-align: left;
+    }
+
+    /* Modal Slideshow */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+    }
+    .modal-content {
+      background-color: rgb(3, 7, 18);
+      border-radius: 10px;
+      padding: 1rem;
+      max-width: 90%;
+      max-height: 90vh;
+      position: relative;
+      box-shadow: 0 0 20px rgba(173, 216, 230, 0.3);
+    }
+    .modal-slideshow {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+    }
+    .modal-slide {
+      display: none;
+      width: 100%;
+    }
+    .modal-slide img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .modal-prev, .modal-next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: clamp(10px, 2vw, 16px);
+      color: #ADD8E6;
+      font-size: clamp(14px, 2.5vw, 18px);
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 3px;
+      user-select: none;
+    }
+    .modal-next {
+      right: 0;
+    }
+    .modal-prev:hover, .modal-next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-dots {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .modal-dot {
+      cursor: pointer;
+      height: clamp(10px, 2vw, 15px);
+      width: clamp(10px, 2vw, 15px);
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    .modal-dot.active, .modal-dot:hover {
+      background-color: #413f3f;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #ADD8E6;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 2100;
+    }
+    .modal-close:hover {
+      color: #413f3f;
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      padding: clamp(10px, 2vw, 15px);
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+    .whatsapp-btn img {
+      width: clamp(25px, 5vw, 30px);
+      height: clamp(25px, 5vw, 30px);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(26, 26, 26, 0.95);
+      padding: clamp(1.5rem, 3vw, 2rem) 1rem;
+    }
+    .Social {
+      display: flex;
+      justify-content: center;
+      gap: clamp(0.8rem, 2vw, 1rem);
+      margin-top: 1rem;
+    }
+    .Social a {
+      width: clamp(2rem, 5vw, 2.5rem);
+      height: clamp(2rem, 5vw, 2.5rem);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba(26, 26, 26, 0.95);
+        width: 70%;
+        max-width: 300px;
+        padding: 4rem 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+      }
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+      }
+      .nav-link {
+        font-size: 1.125rem;
+        padding: 1rem;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .cards-layout {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .image-display {
+        display: none !important;
+      }
+      .mobile-image {
+        display: none;
+        width: 100%;
+        margin-top: 1rem;
+        background: rgba(26,26,26,0.7);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(173,216,230,0.1);
+        align-items: center;
+        justify-content: center;
+        min-height: 180px;
+      }
+      .service-card.active .mobile-image {
+        display: flex !important;
+      }
+      .service-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba(26, 26, 26, 0.95);
+        width: 70%;
+        max-width: 300px;
+        padding: 4rem 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+      }
+      .nav-link {
+        font-size: 1.25rem;
+        padding: 1rem;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .services {
+        padding: 0 1rem;
+      }
+      .service-card {
+        max-width: 350px;
+      }
+      .modal-content {
+        max-width: 95%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-bg h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+      .hero-bg p {
+        font-size: clamp(0.9rem, 3vw, 1rem);
+      }
+      
+      
+      .whatsapp-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px;
+      }
+      .whatsapp-btn img {
+        width: 25px;
+        height: 25px;
+      }
+      .modal-content {
+        padding: 0.5rem;
+      }
+      .modal-close {
+        font-size: 20px;
+        top: 5px;
+        right: 10px;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .max-w-7xl {
+        max-width: 80rem;
+      }
+      .service-card {
+        max-width: 450px;
+      }
+    }
+
+    @media (min-width: 1920px) {
+      .hero-bg h1 {
+        font-size: 5rem;
+      }
+      .hero-bg p {
+        font-size: 2rem;
+      }
+      .service-card {
+        max-width: 500px;
+      }
+      .nav-link {
+        font-size: 1.2rem;
+      }
+      .modal-slideshow {
+        max-width: 1000px;
+      }
+    }
+
+    /* 2-2-2-1 layout for tablet (769px–1024px) */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .service-card:nth-child(7) {
+        grid-column: 1 / 3; /* Span both columns to center */
+        justify-self: center;
+        max-width: 350px;
+      }
+    }
+    .heading-3 {
+      font-size: 18px;
+        line-height: 23px;
+        padding-bottom: 10px;
+    }
+    .card-content p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav-bar fixed top-0 left-0 w-full z-50" data-aos="fade-down">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="nav-logo"><img src="qt=q_95.png" alt="Syncpro Logo" loading="lazy" width="144" height="30"></div>
+      <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation" role="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links">
+        <a href="Homepg.html" class="nav-link">Home</a>
+        <a href="interface.html" class="nav-link">Interfaces</a>
+        <a href="Power.html" class="nav-link">Power</a>
+        <a href="Water-Automation.html" class="nav-link">Water Automation</a>
+        <a href="Distribution-Box.html" class="nav-link">Distribution Box</a>
+        <a href="Sensors.html" class="nav-link">Sensors</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-16 sm:pt-20">
+    <div class="text-center px-4 sm:px-6 relative z-10">
+      <h1 class="font-bold mb-4" data-aos="zoom-in" data-aos-duration="1000">Water Automation</h1>
+      <p class="mb-8" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="1000">From Tap To Tech!</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" data-aos="fade-up">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">All in one Solution</h2>
+    <div class="cards-layout">
+      <div class="image-display" id="imageDisplay">
+        <!-- Image will appear here when a card is clicked -->
+        <p style="color:#ADD8E6;text-align:center;">Click a card to view its image</p>
+      </div>
+      <div class="cards-column">
+        <div class="service-card active" data-series="linear" onclick="showCardImage('linear', this)">
+          <div class="card-content">
+            <h3 class="heading-3">Water Level Automation</h3>
+            <p>Prevent overflow and save water with precise level sensors.</p>
+          </div>
+          <div class="mobile-image"></div>
+        </div>
+        <div class="service-card" data-series="linear-plus" onclick="showCardImage('linear-plus', this)">
+          <div class="card-content">
+            <i class="fas fa-water"></i>
+            <h3 class="heading-3">Pressure Automation</h3>
+            <p>Maintain optimal pressure for high-end applications with intelligent pressure automation.</p>
+          </div>
+          <div class="mobile-image"></div>
+        </div>
+        <div class="service-card" data-series="ezee" onclick="showCardImage('ezee', this)">
+          <div class="card-content">
+            <i class="fas fa-bolt"></i>
+            <h3 class="heading-3">Hot & Cold Water Circulation</h3>
+            <p>Efficient water circulation for pools, instant heating, and diverse applications.</p>
+          </div>
+          <div class="mobile-image"></div>
+        </div>
+        <div class="service-card" data-series="voice" onclick="showCardImage('voice', this)">
+          <div class="card-content">
+            <i class="fas fa-desktop"></i>
+            <h3 class="heading-3">Multiple Pump Cascading</h3>
+            <p>Plug-and-play cascade system for multiple pumps, ensuring optimized performance & balanced load distribution.</p>
+          </div>
+          <div class="mobile-image"></div>
+        </div>
+        <div class="service-card" data-series="plus" onclick="showCardImage('plus', this)">
+          <div class="card-content">
+            <i class="fas fa-network-wired"></i>
+            <h3 class="heading-3">Water & Energy Monitoring</h3>
+            <p>Accurately track water and energy usage for smarter resource management.</p>
+          </div>
+          <div class="mobile-image"></div>
+        </div>
+        <div class="service-card" data-series="plus-premium" onclick="showCardImage('plus-premium', this)">
+          <div class="card-content">
+            <i class="fas fa-box"></i>
+            <h3 class="heading-3">Timers & Scheduling</h3>
+            <p>Automate fountains, irrigation, and water features with precise timers and schedulers.</p>
+          </div>
+          <div class="mobile-image"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Slideshow -->
+  <div class="modal" id="slideshowModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <div class="modal-slideshow" id="modalSlideshow">
+        <!-- Slides will be dynamically populated -->
+      </div>
+     
+      <div class="modal-dots" id="modalDots">
+        <!-- Dots will be dynamically populated -->
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/918128998880" class="whatsapp-btn" data-aos="fade-up">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" loading="lazy" width="30" height="30">
+  </a>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center">
+    <p style="margin:0" data-aos="fade-up">Copyright © 2025 SYNCPRO - All Rights Reserved.</p>
+    <div class="Social">
+      <a rel="noopener" role="link" aria-haspopup="true" target="_blank" data-aid="FOOTER_FACEBOOK_LINK" aria-label="Facebook Social Link" href="https://www.facebook.com/dtiautomation" data-typography="LinkAlpha" class="x-el x-el-a" data-aos="fade-up" data-aos-delay="100">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40" data-ux="IconSocial" class="x-el x-el-svg">
+          <path fill-rule="evenodd" d="M22 12.061C22 6.505 17.523 2 12 2S2 6.505 2 12.061c0 5.022 3.657 9.184 8.438 9.939v-7.03h-2.54v-2.91h2.54V9.845c0-2.522 1.492-3.915 3.777-3.915 1.094 0 2.238.197 2.238.197v2.476h-1.26c-1.243 0-1.63.775-1.63 1.57v1.888h2.773l-.443 2.908h-2.33V22c4.78-.755 8.437-4.917 8.437-9.939z"></path>
+        </svg>
+      </a>
+      <a rel="noopener" role="link" aria-haspopup="true" target="_blank" data-aid="FOOTER_INSTAGRAM_LINK" aria-label="Instagram Social Link" href="https://www.instagram.com/dti.automation/" data-typography="LinkAlpha" class="x-el x-el-a" data-aos="fade-up" data-aos-delay="200">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40" data-ux="IconSocial" class="x-el x-el-svg">
+          <path d="M16.604 8.516c.13.35.198.719.203 1.091.033.622.033.811.033 2.386 0 1.574-.004 1.763-.033 2.385a3.273 3.273 0 0 1-.203 1.091 1.956 1.956 0 0 1-1.12 1.12c-.35.13-.719.198-1.091.204-.622.032-.811.032-2.386.032-1.574 0-1.763-.003-2.385-.032a3.273 3.273 0 0 1-1.091-.204 1.956 1.956 0 0 1-1.12-1.12 3.273 3.273 0 0 1-.204-1.09c-.032-.623-.032-.812-.032-2.386 0-1.575.003-1.764.032-2.386.006-.372.074-.741.204-1.09a1.956 1.956 0 0 1 1.12-1.12c.35-.13.718-.199 1.09-.204.623-.033.812-.033 2.386-.033 1.575 0 1.764.004 2.386.033.372.005.741.074 1.09.203.515.2.922.606 1.12 1.12zM12 15.033a3.033 3.033 0 1 0 0-6.066 3.033 3.033 0 0 0 0 6.066zm3.153-5.477a.71.71 0 1 0 0-1.418.71.71 0 0 0 0 1.418zM12 13.967a1.967 1.967 0 1 1 0-3.934 1.967 1.967 0 0 1 0 3.934zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10A10 10 0 0 0 12 2zm5.87 12.433c-.01.49-.102.974-.274 1.432a3.018 3.018 0 0 1-1.727 1.728 4.335 4.335 0 0 1-1.433.272c-.629.03-.829.037-2.432.037-1.604 0-1.819 0-2.433-.037a4.335 4.335 0 0 1-1.433-.272 3.018 3.018 0 0 1-1.727-1.728 4.335 4.335 0 0 1-.273-1.432c-.029-.63-.036-.83-.036-2.433 0-1.604 0-1.818.036-2.433.01-.49.102-.974.273-1.432a3.018 3.018 0 0 1 1.727-1.728 4.335 4.335 0 0 1 1.433-.272c.629-.03.829-.037 2.433-.037 1.603 0 1.818 0 2.432.037.49.009.974.101 1.433.272.794.307 1.42.934 1.727 1.728.172.458.264.943.273 1.432.03.63.036.83.036 2.433 0 1.604-.007 1.804-.036 2.433z"></path>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 600,
+      easing: 'ease-out',
+      once: true
+    });
+
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      const hamburger = document.querySelector('.hamburger');
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    }
+
+    // Image data for each series (replace with actual image paths)
+    const seriesImages = {
+      'linear': { src: 'wa6.png', alt: 'Linear Series Image' },
+      'linear-plus': { src: 'wa7.png', alt: 'Linear Plus Series Image' },
+      'ezee': { src: 'wa8.png', alt: 'Ezee Series Image' },
+      'voice': { src: 'wa9.png', alt: 'Voice Series Image' },
+      'plus': { src: 'wa10.png', alt: 'Plus Series Image' },
+      'plus-premium': { src: 'wa11.png', alt: 'Plus Premium Series Image' },
+    };
+
+    // Set the first image as default on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const imageDisplay = document.getElementById('imageDisplay');
+      const image = seriesImages['linear'];
+      if (image) {
+        imageDisplay.innerHTML = `<img src="${image.src}" alt="${image.alt}" loading="lazy" style="width:100%;border-radius:10px;object-fit:contain;">`;
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const firstCard = document.querySelector('.service-card[data-series="linear"]');
+      if (firstCard) showCardImage('linear', firstCard);
+    });
+
+    function showCardImage(series, cardElem) {
+      // Remove 'active' from all cards and clear mobile images
+      document.querySelectorAll('.service-card').forEach(card => {
+        card.classList.remove('active');
+        const mobImg = card.querySelector('.mobile-image');
+        if (mobImg) mobImg.innerHTML = '';
+      });
+
+      // Add 'active' to the clicked card
+      const card = cardElem || document.querySelector(`.service-card[data-series="${series}"]`);
+      if (card) card.classList.add('active');
+
+      const image = seriesImages[series];
+
+      // Desktop: show in main image display
+      const imageDisplay = document.getElementById('imageDisplay');
+      if (window.innerWidth > 1024) {
+        if (image) {
+          imageDisplay.innerHTML = `<img src="${image.src}" alt="${image.alt}" loading="lazy" style="width:100%;border-radius:10px;object-fit:contain;">`;
+        } else {
+          imageDisplay.innerHTML = `<p style="color:#fff;">No image available.</p>`;
+        }
+      }
+
+      // Mobile/Tablet: show inside the card
+      if (window.innerWidth <= 1024 && card) {
+        const mobImg = card.querySelector('.mobile-image');
+        if (mobImg) {
+          if (image) {
+            mobImg.innerHTML = `<img src="${image.src}" alt="${image.alt}" loading="lazy" style="width:100%;border-radius:10px;object-fit:contain;">`;
+          } else {
+            mobImg.innerHTML = `<p style="color:#fff;">No image available.</p>`;
+          }
+        }
+      }
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('slideshowModal');
+      modal.style.display = 'none';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('slideshowModal').onclick = function(event) {
+      if (event.target === this) {
+        closeModal();
+      }
+    };
+  </script>
+</body>
+</html>
