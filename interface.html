@@ -146,12 +146,13 @@
       opacity: 1;
     }
     .service-card img {
-      height: max-content;
-           width: max-content;
-           align-items: center;
-           justify-content: center;
-          display: flex;
-          margin: auto;
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin: 0 auto 1rem auto;
+      object-fit: contain;
+      border-radius: 10px;
     }
     .service-card h3 {
       font-size: clamp(1.2rem, 3vw, 1.6rem);
@@ -198,7 +199,7 @@
       background-color: rgb(3, 7, 18);
       border-radius: 10px;
       padding: 1rem;
-      max-width: 90%;
+      max-width: 90vh;
       max-height: 90vh;
       position: relative;
       box-shadow: 0 0 20px rgba(173, 216, 230, 0.3);
@@ -214,7 +215,7 @@
     }
     .modal-slide img {
       width: 100%;
-      height: auto;
+      height: 10%;
       border-radius: 10px;
       object-fit: contain;
     }
@@ -496,12 +497,12 @@
         <span></span>
       </div>
       <div class="nav-links">
-        <a href="Homepg.html" class="nav-link">Home</a>
-        <a href="interface.html" class="nav-link">Interfaces</a>
-        <a href="Power.html" class="nav-link">Power</a>
-        <a href="Water-Automation.html" class="nav-link">Water Automation</a>
-        <a href="Distribution-Box.html" class="nav-link">Distribution Box</a>
-        <a href="Sensors.html" class="nav-link">Sensors</a>
+        <a href="Homepg.html" class="nav-link text-base sm:text-lg">Home</a>
+        <a href="interface.html" class="nav-link text-base sm:text-lg">Interface</a>
+        <a href="Power.html" class="nav-link text-base sm:text-lg">Power</a>
+        <a href="Water-Automation.html" class="nav-link text-base sm:text-lg">Water Automation</a>
+        <a href="Sensors.html" class="nav-link text-base sm:text-lg">Sensors</a>
+        <a href="Distribution-Box.html" class="nav-link text-base sm:text-lg">Distribution Box</a>
       </div>
     </div>
   </nav>
@@ -631,7 +632,7 @@
       'linear': [
         { src: 'gmbl.png', alt: 'Linear Series Image 1' },
         { src: 'cvr.png', alt: 'Linear Series Image 2' },
-        { src: 'linear3.png', alt: 'Linear Series Image 3' }
+        { src: 'partner (2).png', alt: 'Linear Series Image 3' }
       ],
       'linear-plus': [
         { src: 'lp1.png', alt: 'Linear Plus Series Image 1' },
