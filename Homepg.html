@@ -30,6 +30,7 @@
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
+      
     }
     body {
       background-color: rgb(3 7 18);
@@ -56,12 +57,17 @@
     .service-card h3 {
       text-align: center;
     }
-    .service-card img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      max-height: 200px;
-    }
+    /* Safari-friendly and responsive image styles for service cards */
+.service-card img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: min-content;
+  margin: 0 auto 1rem auto;
+  object-fit: contain;
+  border-radius: 10px;
+ 
+}
     /*.service-card:hover {
       transform: translateY(-0.625rem) scale(1.05);
       box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.5);
@@ -84,7 +90,7 @@
       padding: 0.5rem;
     }
     .nav-link:hover {
-      color:#6b6bfb
+      color:#ffffff
     }
     .nav-logo {
       max-height: 1.875rem;
@@ -101,7 +107,7 @@
       font-weight: 400;
       line-height: 1.75;
       letter-spacing: normal;
-      color:#635f5f; /* Improved readability */
+      color:#ffffff; /* Improved readability */
     }
     #address {
       text-align: center;
@@ -157,18 +163,10 @@
     .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(0.5rem, -0.5rem);
     }
-    .services-grid {
-      justify-items: center; /* Center grid items horizontally */
-    }
-    /* Position Distribution Box and Sensors */
-    .service-card.distribution-box {
-      grid-column: 1/3; /* Place in first column */
-      grid-row: 2;
-    }
-    .service-card.sensors {
-      grid-column: 2/4; /* Place in second column */
-      grid-row: 2;
-    }
+   /* .services-grid {
+      justify-items: center;  Center grid items horizontally 
+    }*/
+
     @media (max-width: 1024px) {
       .nav-links {
         display: none;
@@ -195,6 +193,9 @@
       }
       .hamburger {
         display: flex;
+      }
+      .service-card img {
+        max-height: 150px;
       }
       
     }
@@ -230,16 +231,14 @@
       .hero-bg p {
         font-size: 1.25rem;
       }
-      .services-grid {
-        grid-template-columns: 1fr; /* Stack cards vertically */
-        justify-items: center; /* Center cards horizontally */
-      }
-     
-      .service-card.distribution-box,
-      .service-card.sensors {
-        grid-column: auto; /* Reset grid-column */
-        grid-row: auto; /* Reset grid-row */
-      }
+      /*.services-grid {
+        grid-template-columns: 1fr; 
+        justify-items: center; 
+      }*/
+  .service-card img {
+  max-height: 150px;
+}
+    
       .story, #address {
         max-width: 95%;
         font-size: 1rem;
@@ -329,7 +328,8 @@
             border-radius: 15px;
             text-align: center;
             width: 100%;
-            max-width: 400px;
+            max-width: 350px;
+            max-height: 350px;
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease;
@@ -348,8 +348,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: auto;
+            height: auto;
             background: radial-gradient(circle, rgba(173,216,230, 0.2) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -360,15 +360,7 @@
             opacity: 1;
         }
 
-        .service-card img {
-           height: min-content;
-           width: min-content;
-           align-items: center;
-           justify-content: center;
-          display: flex;
-          margin: auto;
-          }
-
+       
         .service-card h3 {
             font-size: 1.6rem;
             font-weight: 700;
@@ -381,7 +373,63 @@
             font-weight: 300;
              color:#ADD8E6;
         }
+     @media  (min-width: 1025px) and (max-width: 1940px) {
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        justify-items: center;
+        align-items: stretch;
+        width: 100%;
+      }
+      .service-card img {
+        max-height: 150px;;
+      }
+       /* Center last two cards if odd number of cards (e.g., 5 cards) */
+  .service-card:last-child:nth-child(5) {
+    grid-column:2/4;
+    grid-row: 2;
+    width:calc(50% - 2rem)
 
+  }
+  .service-card:nth-child(4) {
+    grid-column: 1/3;
+    grid-row: 2;
+    width:calc(50% - 2rem);
+  }
+    }
+
+
+   
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        justify-items: center;
+        align-items: stretch;
+      }
+      .service-card:last-child:nth-child(5) {
+        grid-column: 1/3;
+        justify-self: center;
+      }
+  
+    }
+
+    /* Mobile: 1 column */
+    @media (max-width: 767px) {
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        justify-items: center;
+        align-items: stretch;
+      }
+    }
+    /* Responsive hero background image for all devices */
+
+    
   </style>
 </head>
 <body>
@@ -395,11 +443,11 @@
       </div>
       <div class="nav-links">
         <a href="Homepg.html" class="nav-link text-base sm:text-lg">Home</a>
-        <a href="interface.html" class="nav-link text-base sm:text-lg">Interfaces</a>
+        <a href="interface.html" class="nav-link text-base sm:text-lg">Interface</a>
         <a href="Power.html" class="nav-link text-base sm:text-lg">Power</a>
         <a href="Water-Automation.html" class="nav-link text-base sm:text-lg">Water Automation</a>
-        <a href="Distribution-Box.html" class="nav-link text-base sm:text-lg">Distribution Box</a>
         <a href="Sensors.html" class="nav-link text-base sm:text-lg">Sensors</a>
+        <a href="Distribution-Box.html" class="nav-link text-base sm:text-lg">Distribution Box</a>
       </div>
     </div>
   </nav>
@@ -423,15 +471,12 @@
   <section id="services" class="py-16 sm:py-20 bg-gray-950 px-4 sm:px-6" style="font-family: 'Source Sans Pro', arial, sans-serif;">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12" data-aos="fade-up" data-aos-duration="800">Our Products</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 services-grid">
+      <div class="services-grid">
       <a href="interface.html" class="service-card p-6 block">
     <h3 class="text-xl sm:text-2xl mb-4">Interface</h3>
     <img src="rs=w_1300,h_800.webp" alt="Interface" loading="lazy">
 </a>
-
-
-        
-        <a href="Power.html" class="service-card p-6" >
+      <a href="Power.html" class="service-card p-6" >
           
           <h3 class="text-xl sm:text-2xl mb-4">Power</h3>
           <img src="pwr.png" alt="Power" loading="lazy" height="100%" width="100%"  >
@@ -442,15 +487,15 @@
           <h3 class="text-xl sm:text-2xl mb-4">Water Automation</h3>
           <img src="Waterauto1.png" alt="Water Automation" loading="lazy">
            </a>
-                 
-           <a href="Distribution-Box.html" class="service-card distribution-box p-6" >
-          <h3 class="text-xl sm:text-2xl mb-4">Distribution Box</h3>
-          <img src="db5.png" alt="Distribution Box" loading="lazy">
-           </a>
 
-          <a href="Sensors.html" class="service-card sensors p-6" >
+          <a href="Sensors.html" class="service-card p-6 block" >
           <h3 class="text-xl sm:text-2xl mb-4">Sensors</h3>
           <img src="snsr.png" alt="Sensors" loading="lazy">
+           </a>
+
+            <a href="Distribution-Box.html" class="service-card p-6 block" >
+          <h3 class="text-xl sm:text-2xl mb-4">Distribution Box</h3>
+          <img src="db5.png" alt="Distribution Box" loading="lazy">
            </a>
         </div>
       </div>
